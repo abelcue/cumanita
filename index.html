@@ -89,9 +89,7 @@
         
         
         // Set the date we're counting down to
-        var countDownDate = new Date("Dec 16, 2023 00:03:00 GMT+0300").getTime();
-        var audio = new Audio('audio_file.mp3');
-        
+        var countDownDate = new Date("Dec 16, 2023 01:10:00 GMT+0300").getTime();
         // Update the count down every 1 second
         var x = setInterval(function() {
         
@@ -120,9 +118,10 @@
             clearInterval(x);
             document.getElementById("demo").innerHTML = "<a href='"+ "https://www.youtube.com/watch?v=YG3EhWlBaoI"+"'>VIDEO</a>"
             animate();
-            audio.play();
+            
           }
         }, 1000);
+       
         </script>
   </body>
   <style>
