@@ -89,7 +89,7 @@
         
         
         // Set the date we're counting down to
-        var countDownDate = new Date("Dec 16, 2023 00:00:00 GMT+0300").getTime();
+        var countDownDate = new Date("Dec 16, 2023 00:03:00 GMT+0300").getTime();
         var audio = new Audio('audio_file.mp3');
         
         // Update the count down every 1 second
@@ -165,34 +165,19 @@
       transition: all 0.5s ease-in-out;
     }
 
-    #text {
-  display: flex;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
+    #container {
+      left: 0px;
+      height: calc(100vh + 100px);
+      overflow: hidden;
+      position: relative;
+    }
 
-h2{
-  color: #fff;
-  font-size: 47px;
-  line-height: 40px;
-}
-
-#container {
-  left: 0px;
-  top: -100px;
-  height: calc(100vh + 100px);
-  overflow: hidden;
-  position: relative;
-}
-
-#animate{
-  margin: 0 auto;
-  width: 20px;
-  overflow: visible;
-  position: relative;
-}
+    #animate{
+      margin: 0 auto;
+      width: 20px;
+      overflow: visible;
+      position: relative;
+    }
     </style>
 </html>
 
