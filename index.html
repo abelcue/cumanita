@@ -10,15 +10,87 @@
   </head>
   <body>
     <main>
-        <div class = "centered">
+      <div id="container">
+        <div id="animate">
+          <div class = "centered">
             <p class = "texto", id="texto">¡FELIZ CUM!</p>
             <p class = "texto", id="demo"></p>
         </div>
+        </div>
+      </div>  
+      
 
     </main>
 	<script>
+        var container = document.getElementById('animate');
+        var emoji = ['🎂', '❤️', '💗', '🎉', '🎊', '🥳', '💖'];
+        var circles = [];
+
+        for (var i = 0; i < 15; i++) {
+          addCircle(i * 150, [10 + 0, 300], emoji[Math.floor(Math.random() * emoji.length)]);
+          addCircle(i * 150, [10 + 0, -300], emoji[Math.floor(Math.random() * emoji.length)]);
+          addCircle(i * 150, [10 - 200, -300], emoji[Math.floor(Math.random() * emoji.length)]);
+          addCircle(i * 150, [10 + 200, 300], emoji[Math.floor(Math.random() * emoji.length)]);
+          addCircle(i * 150, [10 - 400, -300], emoji[Math.floor(Math.random() * emoji.length)]);
+          addCircle(i * 150, [10 + 400, 300], emoji[Math.floor(Math.random() * emoji.length)]);
+          addCircle(i * 150, [10 - 600, -300], emoji[Math.floor(Math.random() * emoji.length)]);
+          addCircle(i * 150, [10 + 600, 300], emoji[Math.floor(Math.random() * emoji.length)]);
+        }
+
+
+
+        function addCircle(delay, range, color) {
+          setTimeout(function() {
+            var c = new Circle(range[0] + Math.random() * range[1], 80 + Math.random() * 4, color, {
+              x: -0.15 + Math.random() * 0.3,
+              y: 1 + Math.random() * 1
+            }, range);
+            circles.push(c);
+          }, delay);
+        }
+
+        function Circle(x, y, c, v, range) {
+          var _this = this;
+          this.x = x;
+          this.y = y;
+          this.color = c;
+          this.v = v;
+          this.range = range;
+          this.element = document.createElement('span');
+          /*this.element.style.display = 'block';*/
+          this.element.style.opacity = 0;
+          this.element.style.position = 'absolute';
+          this.element.style.fontSize = '26px';
+          this.element.style.color = 'hsl('+(Math.random()*360|0)+',80%,50%)';
+          this.element.innerHTML = c;
+          container.appendChild(this.element);
+
+          this.update = function() {
+            if (_this.y > 800) {
+              _this.y = 80 + Math.random() * 4;
+              _this.x = _this.range[0] + Math.random() * _this.range[1];
+            }
+            _this.y += _this.v.y;
+            _this.x += _this.v.x;
+            this.element.style.opacity = 1;
+            this.element.style.transform = 'translate3d(' + _this.x + 'px, ' + _this.y + 'px, 0px)';
+            this.element.style.webkitTransform = 'translate3d(' + _this.x + 'px, ' + _this.y + 'px, 0px)';
+            this.element.style.mozTransform = 'translate3d(' + _this.x + 'px, ' + _this.y + 'px, 0px)';
+          };
+        }
+
+        function animate() {
+          for (var i in circles) {
+            circles[i].update();
+          }
+          requestAnimationFrame(animate);
+        }
+
+        
+        
         // Set the date we're counting down to
-        var countDownDate = new Date("Dec 16, 2023 00:00:00").getTime();
+        var countDownDate = new Date("Dec 16, 2023 00:00:00 GMT+0300").getTime();
+        var audio = new Audio('audio_file.mp3');
         
         // Update the count down every 1 second
         var x = setInterval(function() {
@@ -46,13 +118,16 @@
           // If the count down is finished, write some text
           if (distance < 0) {
             clearInterval(x);
-            document.getElementById("demo").innerHTML = "EXPIRED";
+            document.getElementById("demo").innerHTML = "<a href='"+ "https://www.youtube.com/watch?v=YG3EhWlBaoI"+"'>VIDEO</a>"
+            animate();
+            audio.play();
           }
         }, 1000);
         </script>
   </body>
   <style>
     @font-face { font-family: ocr-b-std; src: url('OCR B Std Regular.otf'); }
+    
     body {
       background-image: url('anita.png');
       background-repeat: no-repeat;
@@ -83,6 +158,41 @@
     .texto {
         text-align: center;
     }
+
+    
+    a:hover{
+      color: #d41d1d;
+      transition: all 0.5s ease-in-out;
+    }
+
+    #text {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+h2{
+  color: #fff;
+  font-size: 47px;
+  line-height: 40px;
+}
+
+#container {
+  left: 0px;
+  top: -100px;
+  height: calc(100vh + 100px);
+  overflow: hidden;
+  position: relative;
+}
+
+#animate{
+  margin: 0 auto;
+  width: 20px;
+  overflow: visible;
+  position: relative;
+}
     </style>
 </html>
 
